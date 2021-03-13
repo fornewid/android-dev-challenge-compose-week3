@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge.ui.login
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,13 +38,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.utils.underline
 import com.example.androiddevchallenge.ui.widget.PrimaryButton
 
 @Composable
 fun LoginScreen(goToHome: () -> Unit) {
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Surface(
+        color = MaterialTheme.colors.background,
+        modifier = Modifier.fillMaxSize()
+    ) {
         Column {
             Text(
                 text = "Log in with email",
@@ -131,5 +137,21 @@ fun LoginScreen(goToHome: () -> Unit) {
                     .padding(horizontal = 16.dp),
             )
         }
+    }
+}
+
+@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun LightPreview() {
+    MyTheme {
+        LoginScreen(goToHome = {})
+    }
+}
+
+@Preview("Dark Theme", widthDp = 360, heightDp = 640, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun DarkPreview() {
+    MyTheme(darkTheme = true) {
+        LoginScreen(goToHome = {})
     }
 }

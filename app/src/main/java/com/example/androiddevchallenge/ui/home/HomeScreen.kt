@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge.ui.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -32,13 +33,18 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import dev.chrisbanes.accompanist.insets.navigationBarsHeight
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun HomeScreen() {
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Surface(
+        color = MaterialTheme.colors.background,
+        modifier = Modifier.fillMaxSize()
+    ) {
         val tabs = HomeTabs.values()
         Scaffold(
             bottomBar = {
@@ -73,4 +79,20 @@ private enum class HomeTabs(
     Favorites("Favorites", Icons.Default.FavoriteBorder),
     Profile("Profile", Icons.Default.AccountCircle),
     Cart("Cart", Icons.Default.ShoppingCart)
+}
+
+@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun LightPreview() {
+    MyTheme {
+        HomeScreen()
+    }
+}
+
+@Preview("Dark Theme", widthDp = 360, heightDp = 640, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun DarkPreview() {
+    MyTheme(darkTheme = true) {
+        HomeScreen()
+    }
 }
